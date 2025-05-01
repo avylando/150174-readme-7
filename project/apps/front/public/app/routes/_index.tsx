@@ -1,9 +1,10 @@
-import NxWelcome from '../nx-welcome';
+import { MainPage } from '../components/main-page';
+import { MainLayout } from '../layouts/main-layout';
 
 export default function Index() {
   return (
-    <div>
-      <NxWelcome title={'front-public'} />
-    </div>
+    <MainLayout>
+      <MainPage />
+    </MainLayout>
   );
 }
