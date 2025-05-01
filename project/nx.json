@@ -14,45 +14,96 @@
     ],
     "sharedGlobals": []
   },
-  "plugins": [
-    {
-      "plugin": "@nx/webpack/plugin",
-      "options": {
-        "buildTargetName": "build",
-        "serveTargetName": "serve",
-        "previewTargetName": "preview"
-      }
-    },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      },
-      "exclude": [
-        "apps/account-e2e/**/*",
-        "apps/blog-e2e/**/*",
-        "apps/notification-e2e/**/*",
-        "apps/api-e2e/**/*",
-        "apps/file-storage-e2e/**/*"
-      ]
-    }
-  ],
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "libs"
+  },
   "targetDefaults": {
     "@nx/js:tsc": {
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "e2e-ci--**/**": {
+      "dependsOn": ["^build"]
+    },
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "defaultConfiguration": "production",
+      "options": {
+        "webpackConfig": "{projectRoot}/webpack.config.js",
+        "outputPath": "{workspaceRoot}/dist/apps/{projectName}",
+        "target": "node"
+      },
+      "inputs": [
+        "default",
+        "!{workspaceRoot}/**/*.tsbuildinfo",
+        "!{workspaceRoot}/**/*.js",
+        "!{workspaceRoot}/**/*.js.map",
+        "!{workspaceRoot}/**/*.d.ts",
+        "!{workspaceRoot}/**/*.d.ts.map",
+        "!{workspaceRoot}/**/*.json"
+      ],
+      "configurations": {
+        "development": { "mode": "development" },
+        "production": { "mode": "production" },
+        "stage": { "mode": "stage" }
+      }
     }
   },
   "release": {
     "version": {
       "preVersionCommand": "npx nx run-many -t build"
+    }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/react/router-plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start",
+        "watchDepsTargetName": "watch-deps",
+        "buildDepsTargetName": "build-deps",
+        "typecheckTargetName": "typecheck"
+      }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "devTargetName": "dev",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "typecheckTargetName": "typecheck",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
+      }
+    },
+    {
+      "plugin": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
+    }
+  ],
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true,
+        "style": "styled-components",
+        "linter": "none",
+        "bundler": "vite"
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "none"
+      }
     }
   }
 }
