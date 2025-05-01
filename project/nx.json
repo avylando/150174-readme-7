@@ -10,7 +10,8 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/test-setup.[jt]s"
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/eslint.config.mjs"
     ],
     "sharedGlobals": []
   },
@@ -45,9 +46,51 @@
         "!{workspaceRoot}/**/*.json"
       ],
       "configurations": {
-        "development": { "mode": "development" },
-        "production": { "mode": "production" },
-        "stage": { "mode": "stage" }
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        },
+        "stage": {
+          "mode": "stage"
+        }
+      }
+    },
+    "build:front": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "{workspaceRoot}/dist/apps/front/{projectName}"
+      },
+      "outputs": ["{options.outputPath}"],
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        },
+        "stage": {
+          "mode": "stage"
+        }
+      }
+    },
+    "serve:front": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "build:front:development"
+      },
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "buildTarget": "build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "build:production",
+          "hmr": false
+        },
+        "stage": { "buildTarget": "build:stage", "hmr": false }
       }
     }
   },
@@ -86,6 +129,24 @@
       "plugin": "@nx/playwright/plugin",
       "options": {
         "targetName": "e2e"
+      }
+    },
+    {
+      "plugin": "@nx/remix/plugin",
+      "options": {
+        "startTargetName": "start",
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "typecheckTargetName": "typecheck",
+        "serveStaticTargetName": "serve-static",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
       }
     }
   ],
