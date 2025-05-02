@@ -1,28 +1,16 @@
-import { vitePlugin as remix } from '@remix-run/dev';
+import { reactRouter } from '@react-router/dev/vite';
 import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
-declare module '@remix-run/node' {
-  interface Future {
-    v3_singleFetch: true;
-  }
-}
-
 export default defineConfig({
   root: __dirname,
-  plugins: [
-    remix({
-      future: {
-        v3_fetcherPersist: true,
-        v3_relativeSplatPath: true,
-        v3_throwAbortReason: true,
-        v3_singleFetch: true,
-        v3_lazyRouteDiscovery: true,
-      },
-    }),
-    nxViteTsPaths(),
-  ],
+  build: {
+    outDir: '../../../dist/apps/front/readme-public/client',
+    emptyOutDir: true,
+  },
+  plugins: [reactRouter(), nxViteTsPaths()],
   server: {
+    port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,
     fs: {
       allow: [
         // search up for workspace root

@@ -1,5 +1,5 @@
 {
-  "name": "front-public",
+  "name": "readme-public",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/front/public",
   "projectType": "application",

@@ -1,0 +1,9 @@
+{
+  "name": "front/api-service",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/front/api-service/src",
+  "projectType": "library",
+  "tags": ["lib", "front"],
+  "// targets": "to see all targets run: nx show project front/api-service --web",
+  "targets": {}
+}

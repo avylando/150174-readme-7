@@ -1,10 +1,10 @@
-import { createRemixStub } from '@remix-run/testing';
+import { createRoutesStub } from 'react-router';
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import Index from '../../app/routes/_index';
 
 test('renders loader data', async () => {
-  const RemixStub = createRemixStub([
+  const RemixStub = createRoutesStub([
     {
       path: '/',
       Component: Index,
