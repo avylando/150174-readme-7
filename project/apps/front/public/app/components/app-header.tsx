@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Logo from '../assets/img/logo.svg';
 
 interface HeaderProps {}
 
@@ -10,7 +11,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
           <a className="header__logo-link header__logo-link--active">
             <img
               className="header__logo"
-              src="img/logo.svg"
+              src={Logo}
               alt="Логотип readme"
               width="172"
               height="32"

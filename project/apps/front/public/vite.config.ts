@@ -8,6 +8,7 @@ export default defineConfig({
     outDir: '../../../dist/apps/front/readme-public/client',
     emptyOutDir: true,
   },
+  base: process.env.BASE_URL || '/readme',
   plugins: [reactRouter(), nxViteTsPaths()],
   server: {
     port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,

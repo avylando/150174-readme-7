@@ -1,17 +1,12 @@
 import * as React from 'react';
 import { useFetcher } from 'react-router';
-import { ApiRoute } from '../constants/api';
 
 interface ILoginFormProps {}
 
 const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
   const { Form, state } = useFetcher();
   return (
-    <Form
-      className="authorization__form form"
-      action={ApiRoute.LOGIN}
-      method="post"
-    >
+    <Form className="authorization__form form" method="post">
       <div className="authorization__input-wrapper form__input-wrapper">
         <input
           className="authorization__input authorization__input--login form__input"

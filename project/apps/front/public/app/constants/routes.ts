@@ -3,4 +3,8 @@ const AppRoute = {
   NOT_FOUND: '*',
 } as const;
 
-export { AppRoute };
+const ExternalRoute = {
+  BLOG: '/blog',
+} as const;
+
+export { AppRoute, ExternalRoute };

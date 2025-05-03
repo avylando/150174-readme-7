@@ -1,0 +1,9 @@
+{
+  "name": "front/auth",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/front/auth/src",
+  "projectType": "library",
+  "tags": ["libs", "front"],
+  "// targets": "to see all targets run: nx show project front/auth --web",
+  "targets": {}
+}

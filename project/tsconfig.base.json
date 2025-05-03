@@ -18,6 +18,8 @@
     "paths": {
       "@avylando-readme/core": ["libs/core/src/index.ts"],
       "@avylando/config": ["libs/config/src/index.ts"],
+      "@front/api-service": ["libs/front/api-service/src/index.ts"],
+      "@front/auth": ["libs/front/auth/src/index.ts"],
       "@project/account-config": ["libs/account/config/src/index.ts"],
       "@project/account-notify": ["libs/account/notify/src/index.ts"],
       "@project/api-config": ["libs/api/config/src/index.ts"],

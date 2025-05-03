@@ -63,14 +63,14 @@ export class UsersController {
   private getUserPath(userId: string) {
     return buildURI(
       join(this.getAuthenticationServicePath(), AuthEndpoints.USER),
-      { pathParams: { id: userId } }
+      { pathParams: { id: userId } },
     );
   }
 
   private getRefreshTokenPath() {
     return join(
       this.getAuthenticationServicePath(),
-      AuthEndpoints.REFRESH_TOKEN
+      AuthEndpoints.REFRESH_TOKEN,
     );
   }
 
@@ -86,7 +86,7 @@ export class UsersController {
     private readonly httpService: HttpService,
     @Inject(API_SERVICES_PROVIDER_NAME)
     private readonly services: ApiServicesConfig,
-    private readonly userService: UserService
+    private readonly userService: UserService,
   ) {}
 
   @Public()
@@ -104,7 +104,7 @@ export class UsersController {
   public async login(@Body() dto: LoginUserDto): Promise<UserRdo> {
     const { data } = await this.httpService.axiosRef.post<UserRdo>(
       this.getLoginPath(),
-      dto
+      dto,
     );
     return data;
   }
@@ -121,7 +121,7 @@ export class UsersController {
   @HttpCode(HttpStatus.CREATED)
   public async register(
     @Body() dto: RegisterUserApiDto,
-    @UploadedFile(ValidateAvatarImagePipe) avatar?: Express.Multer.File
+    @UploadedFile(ValidateAvatarImagePipe) avatar?: Express.Multer.File,
   ): Promise<UserRdo> {
     let userData: CreateUserDto = dto;
     if (avatar) {
@@ -132,13 +132,13 @@ export class UsersController {
       };
 
       this.logger.log(
-        `Avatar uploaded successfully: ${userAssetsData.avatarSrc}`
+        `Avatar uploaded successfully: ${userAssetsData.avatarSrc}`,
       );
     }
 
     const { data } = await this.httpService.axiosRef.post<UserRdo>(
       this.getRegisterPath(),
-      userData
+      userData,
     );
 
     return data;
@@ -155,7 +155,7 @@ export class UsersController {
   public async updateUser(
     @Param('id', ValidateMongoIdPipe) id: string,
     @Body() dto: UpdateUserApiDto,
-    @UploadedFile(ValidateAvatarImagePipe) avatar?: Express.Multer.File
+    @UploadedFile(ValidateAvatarImagePipe) avatar?: Express.Multer.File,
   ): Promise<UserRdo> {
     let userData: UpdateUserDto = dto;
     if (avatar) {
@@ -165,13 +165,13 @@ export class UsersController {
         ...userAssetsData,
       };
       this.logger.log(
-        `Avatar uploaded successfully: ${userAssetsData.avatarSrc}`
+        `Avatar uploaded successfully: ${userAssetsData.avatarSrc}`,
       );
     }
 
     const { data } = await this.httpService.axiosRef.put<UserRdo>(
       this.getUserPath(id),
-      userData
+      userData,
     );
 
     return data;
@@ -186,7 +186,7 @@ export class UsersController {
   @Get(AuthEndpoints.USER)
   public async findUser(
     @Param('id', ValidateMongoIdPipe) id: string,
-    @Req() req: Request
+    @Req() req: Request,
   ): Promise<UserRdo> {
     const { data } = await this.httpService.axiosRef.get<UserRdo>(
       this.getUserPath(id),
@@ -194,7 +194,7 @@ export class UsersController {
         headers: {
           Authorization: req.headers['authorization'],
         },
-      }
+      },
     );
     return data;
   }
@@ -215,7 +215,7 @@ export class UsersController {
         headers: {
           Authorization: req.headers['authorization'],
         },
-      }
+      },
     );
     return data;
   }
@@ -231,7 +231,7 @@ export class UsersController {
         headers: {
           Authorization: req.headers['authorization'],
         },
-      }
+      },
     );
     return data;
   }
@@ -250,7 +250,7 @@ export class UsersController {
         headers: {
           Authorization: req.headers['authorization'],
         },
-      }
+      },
     );
   }
 }
