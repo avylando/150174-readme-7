@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { LoginForm } from './login-form';
+import { LoginForm } from '../components/login-form';
 
-interface IMainPageProps {}
+interface MainPageProps {}
 
-const MainPage: React.FunctionComponent<IMainPageProps> = (props) => {
+const MainPage: React.FunctionComponent<MainPageProps> = (props) => {
   return (
     <main>
       <h1 className="visually-hidden">

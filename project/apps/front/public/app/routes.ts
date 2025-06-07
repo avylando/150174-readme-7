@@ -3,4 +3,5 @@ import { AppRoute } from './constants/routes';
 
 export default [
   route(AppRoute.INDEX, './routes/_index.tsx'),
+  route(AppRoute.SIGN_UP, './routes/_public.sign-up.tsx'),
 ] satisfies RouteConfig;

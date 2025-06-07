@@ -1,6 +1,6 @@
+import path from 'path-browserify';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 import type { MetaFunction, LinksFunction } from 'react-router';
-import './assets/main.css';
 
 export const meta: MetaFunction = () => [
   {
@@ -18,6 +18,10 @@ export const links: LinksFunction = () => [
   {
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
+  },
+  {
+    rel: 'stylesheet',
+    href: path.join(import.meta.env.BASE_URL, '/public/css/main.css'),
   },
 ];
 

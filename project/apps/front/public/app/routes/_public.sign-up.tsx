@@ -1,9 +1,9 @@
-import { MainPage } from '../pages/main-page';
 import { MainLayout } from '../layouts/main-layout';
 
 import { ActionFunctionArgs, redirect } from 'react-router';
 import { publicApiService } from '../services/api.service';
 import { ExternalRoute } from '../constants/routes';
+import { SignUpPage } from '../pages/sign-up';
 
 export async function clientAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
@@ -20,7 +20,7 @@ export async function clientAction({ request }: ActionFunctionArgs) {
 export default function Index() {
   return (
     <MainLayout>
-      <MainPage />
+      <SignUpPage />
     </MainLayout>
   );
 }

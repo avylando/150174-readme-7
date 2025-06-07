@@ -1,4 +1,5 @@
 const AppRoute = {
+  SIGN_UP: '/sign-up',
   INDEX: '/',
   NOT_FOUND: '*',
 } as const;

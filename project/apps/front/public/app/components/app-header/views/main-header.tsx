@@ -1,9 +1,11 @@
 import * as React from 'react';
-import Logo from '../assets/img/logo.svg';
+import Logo from '../../../assets/img/logo.svg';
+import { Link } from 'react-router';
+import { AppRoute } from '../../../constants/routes';
 
 interface HeaderProps {}
 
-const Header: React.FunctionComponent<HeaderProps> = (props) => {
+const MainHeaderView: React.FunctionComponent<HeaderProps> = (props) => {
   return (
     <header className="header page__header">
       <div className="header__wrapper page__header-wrapper container">
@@ -24,12 +26,12 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
             <p className="header__register-slogan">Еще нет аккаунта?</p>
             <ul className="header__user-nav">
               <li>
-                <a
+                <Link
                   className="header__user-button header__register-button button button--transparent"
-                  href="registration.html"
+                  to={AppRoute.SIGN_UP}
                 >
                   Регистрация
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -39,4 +41,4 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
   );
 };
 
-export { Header };
+export { MainHeaderView };

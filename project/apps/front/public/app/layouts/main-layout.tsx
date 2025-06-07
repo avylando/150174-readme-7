@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Header } from '../components/app-header';
+import { MainHeader } from '../components/app-header';
 import { Footer } from '../components/app-footer';
 import { SvgSprite } from '../components/svg-sprite';
 
@@ -9,12 +9,12 @@ const MainLayout: React.FunctionComponent<
   React.PropsWithChildren<IMainLayoutProps>
 > = ({ children }) => {
   return (
-    <>
+    <div className="page page--main">
       <SvgSprite />
-      <Header />
+      <MainHeader />
       {children}
       <Footer />
-    </>
+    </div>
   );
 };
 
